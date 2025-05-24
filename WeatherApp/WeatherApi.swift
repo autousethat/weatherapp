@@ -23,15 +23,15 @@ class WeatherApi {
             case .forecast(let lat, let lon, let days):
                 urlString += "forecast.json?key=\(key)&q=\(lat),\(lon)&days=\(days)"
             }
-            print(urlString)
             return URL(string: urlString)!
         }
     }
     
-    func request(_ method: Method) {
+    func requestJSON(_ method: Method) -> Any? {
         if let data = try? Data(contentsOf: method.url) {
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
+            return try? JSONSerialization.jsonObject(with: data, options: [])
         }
+        return nil
     }
+
 }
