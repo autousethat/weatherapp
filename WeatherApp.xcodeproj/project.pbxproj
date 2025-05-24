@@ -10,6 +10,8 @@
 		087D83E92DE190770093CDFD /* GeoLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D83E82DE190770093CDFD /* GeoLocator.swift */; };
 		0889ECA52DE1A380008FC399 /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889ECA42DE1A380008FC399 /* WeatherApi.swift */; };
 		0889ECA72DE22839008FC399 /* WeatherDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889ECA62DE22839008FC399 /* WeatherDayModel.swift */; };
+		0889ECA92DE23C57008FC399 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889ECA82DE23C57008FC399 /* UIViewExtension.swift */; };
+		0889ECAC2DE23DC3008FC399 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0889ECAB2DE23DC3008FC399 /* CurrentWeatherView.swift */; };
 		088C99DB2DE170A500272BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088C99DA2DE170A500272BAF /* AppDelegate.swift */; };
 		088C99DF2DE170A500272BAF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088C99DE2DE170A500272BAF /* RootViewController.swift */; };
 		088C99E42DE170AA00272BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088C99E32DE170AA00272BAF /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 		087D83E82DE190770093CDFD /* GeoLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocator.swift; sourceTree = "<group>"; };
 		0889ECA42DE1A380008FC399 /* WeatherApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
 		0889ECA62DE22839008FC399 /* WeatherDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDayModel.swift; sourceTree = "<group>"; };
+		0889ECA82DE23C57008FC399 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0889ECAB2DE23DC3008FC399 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 		088C99D72DE170A500272BAF /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088C99DA2DE170A500272BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088C99DE2DE170A500272BAF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0889ECAA2DE23D89008FC399 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0889ECAB2DE23DC3008FC399 /* CurrentWeatherView.swift */,
+				0889ECA82DE23C57008FC399 /* UIViewExtension.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		088C99CE2DE170A500272BAF = {
 			isa = PBXGroup;
 			children = (
@@ -58,11 +71,12 @@
 		088C99D92DE170A500272BAF /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				088C99DA2DE170A500272BAF /* AppDelegate.swift */,
+				087D83E82DE190770093CDFD /* GeoLocator.swift */,
 				0889ECA42DE1A380008FC399 /* WeatherApi.swift */,
 				0889ECA62DE22839008FC399 /* WeatherDayModel.swift */,
-				087D83E82DE190770093CDFD /* GeoLocator.swift */,
 				088C99DE2DE170A500272BAF /* RootViewController.swift */,
-				088C99DA2DE170A500272BAF /* AppDelegate.swift */,
+				0889ECAA2DE23D89008FC399 /* UI */,
 				088C99E32DE170AA00272BAF /* Assets.xcassets */,
 				088C99E52DE170AA00272BAF /* LaunchScreen.storyboard */,
 				088C99E82DE170AA00272BAF /* Info.plist */,
@@ -140,9 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0889ECA92DE23C57008FC399 /* UIViewExtension.swift in Sources */,
 				088C99DF2DE170A500272BAF /* RootViewController.swift in Sources */,
 				0889ECA72DE22839008FC399 /* WeatherDayModel.swift in Sources */,
 				0889ECA52DE1A380008FC399 /* WeatherApi.swift in Sources */,
+				0889ECAC2DE23DC3008FC399 /* CurrentWeatherView.swift in Sources */,
 				087D83E92DE190770093CDFD /* GeoLocator.swift in Sources */,
 				088C99DB2DE170A500272BAF /* AppDelegate.swift in Sources */,
 			);

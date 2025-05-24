@@ -10,9 +10,9 @@ import UIKit
 
 class GeoLocator: NSObject, CLLocationManagerDelegate {
     
-    var onUpdate: (CLLocation)->Void = { location in
-        print("update: ", location)
-    }
+    private var isUpdating = false
+    
+    var onUpdate: (CLLocation) -> Void = { _ in }
     
     let manager = CLLocationManager()
     
@@ -23,14 +23,22 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     
     func start() {
         manager.requestWhenInUseAuthorization()
+        isUpdating = true
         manager.startUpdatingLocation()
+        if let location = manager.location {
+            onUpdate(location)
+        }
     }
     
     func stop() {
+        isUpdating = false
         manager.stopUpdatingLocation()
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard isUpdating else {
+            return
+        }
         if let location = locations.first {
             onUpdate(location)
         }
