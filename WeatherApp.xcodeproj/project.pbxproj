@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		087D83E92DE190770093CDFD /* GeoLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D83E82DE190770093CDFD /* GeoLocator.swift */; };
 		088C99DB2DE170A500272BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088C99DA2DE170A500272BAF /* AppDelegate.swift */; };
 		088C99DF2DE170A500272BAF /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088C99DE2DE170A500272BAF /* RootViewController.swift */; };
 		088C99E42DE170AA00272BAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 088C99E32DE170AA00272BAF /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		087D83E82DE190770093CDFD /* GeoLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoLocator.swift; sourceTree = "<group>"; };
 		088C99D72DE170A500272BAF /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		088C99DA2DE170A500272BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		088C99DE2DE170A500272BAF /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -52,8 +54,9 @@
 		088C99D92DE170A500272BAF /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				088C99DA2DE170A500272BAF /* AppDelegate.swift */,
+				087D83E82DE190770093CDFD /* GeoLocator.swift */,
 				088C99DE2DE170A500272BAF /* RootViewController.swift */,
+				088C99DA2DE170A500272BAF /* AppDelegate.swift */,
 				088C99E32DE170AA00272BAF /* Assets.xcassets */,
 				088C99E52DE170AA00272BAF /* LaunchScreen.storyboard */,
 				088C99E82DE170AA00272BAF /* Info.plist */,
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				088C99DF2DE170A500272BAF /* RootViewController.swift in Sources */,
+				087D83E92DE190770093CDFD /* GeoLocator.swift in Sources */,
 				088C99DB2DE170A500272BAF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

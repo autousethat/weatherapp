@@ -8,12 +8,12 @@
 import UIKit
 
 class RootViewController: UIViewController {
+    
+    let locator = GeoLocator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
+    
 }
 
