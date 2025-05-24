@@ -20,7 +20,8 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("update: ", locations)
+        // TODO: remove
+        //print("update: ", locations)
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
