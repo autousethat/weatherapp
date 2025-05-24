@@ -10,6 +10,10 @@ import UIKit
 
 class GeoLocator: NSObject, CLLocationManagerDelegate {
     
+    var onUpdate: (CLLocation)->Void = { location in
+        print("update: ", location)
+    }
+    
     let manager = CLLocationManager()
     
     override init() {
@@ -20,15 +24,14 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // TODO: remove
-        print("update: ", locations)
+        if let location = locations.first {
+            onUpdate(location)
+        }
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // TODO: remove
-        print("error:", error.localizedDescription, error.localizedDescription.debugDescription)
         if (error._code == CLError.denied.rawValue) {
-            let alert = UIAlertController(title: "Permission needed", message: "Allow when in use location service please", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Permission denied", message: "Allow location services please", preferredStyle: .alert)
             let action = UIAlertAction(title: "Settings", style: .default) { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(url)
