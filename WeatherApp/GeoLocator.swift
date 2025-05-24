@@ -19,8 +19,15 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         manager.delegate = self
+    }
+    
+    func start() {
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+    }
+    
+    func stop() {
+        manager.stopUpdatingLocation()
     }
     
     @objc func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
