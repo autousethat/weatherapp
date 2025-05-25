@@ -58,10 +58,9 @@
 		088C99CE2DE170A500272BAF = {
 			isa = PBXGroup;
 			children = (
-				08AE76C72DE302FD001A30F3 /* Packages */,
 				088C99D92DE170A500272BAF /* WeatherApp */,
+				08AE76C72DE302FD001A30F3 /* Packages */,
 				088C99D82DE170A500272BAF /* Products */,
-				08AE76C92DE30421001A30F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,13 +94,6 @@
 				08AE76C82DE302FD001A30F3 /* SnapKit */,
 			);
 			name = Packages;
-			sourceTree = "<group>";
-		};
-		08AE76C92DE30421001A30F3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
