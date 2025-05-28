@@ -48,7 +48,9 @@ class RootViewController: UIViewController {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "cccc d MMMM yyyy"
                 self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
-                self.hourlyView.configure(weather.dayHours)
+                if let hours = weather.dayHours.first?.hours {
+                    self.hourlyView.configure(hours)
+                }
             }
             else {
                 print("fetch error")

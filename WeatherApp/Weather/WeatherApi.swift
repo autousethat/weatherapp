@@ -34,7 +34,6 @@ class WeatherApi {
         return nil
     }
     
-
     func getCurrentWeather(lat: Double, lon: Double, days: Int) -> WeatherModel? {
         if
             let json = requestJSON(.forecast(lat: lat, lon: lon, days: days)) as? [String: Any],
@@ -49,8 +48,28 @@ class WeatherApi {
             let wind = curr["wind_kph"] as? Double,
             let cond = curr["condition"] as? [String: Any],
             let icon = cond["icon"] as? String,
-            let kind = cond["text"] as? String {
-            return WeatherModel(day: WeatherDayModel(temp: temp, feels: feels, wind: wind, icon: "http:" + icon, kind: kind, place: country + " / " + region + " / " + name, time: time), dayHours: Array(repeating: WeatherHourModel(time: time, icon: "http:" + icon, temp: temp), count: 24))
+            let kind = cond["text"] as? String,
+            let forecast = json["forecast"] as? [String: Any],
+            let forecastdays = forecast["forecastday"] as? [[String: Any]] {
+            var dayHours = [WeatherDayHoursModel]()
+            for day in forecastdays {
+                if
+                    let date = day["date_epoch"] as? Double,
+                    let hour = day["hour"] as? [[String: Any]] {
+                    var hours = [WeatherHourModel]()
+                    for one in hour {
+                        if
+                            let time = one["time_epoch"] as? Double,
+                            let temp = one["temp_c"] as? Double,
+                            let cond = one["condition"] as? [String: Any],
+                            let icon = cond["icon"] as? String {
+                            hours.append(WeatherHourModel(time: time, icon: "http:" + icon, temp: temp))
+                        }
+                    }
+                    dayHours.append(WeatherDayHoursModel(date: date, hours: hours))
+                }
+            }
+            return WeatherModel(day: WeatherDayModel(temp: temp, feels: feels, wind: wind, icon: "http:" + icon, kind: kind, place: country + " / " + region + " / " + name, time: time), dayHours: dayHours)
         }
         return nil
     }

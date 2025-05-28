@@ -9,6 +9,5 @@ import Foundation
 
 struct WeatherModel {
     let day: WeatherDayModel
-    let dayHours: [WeatherHourModel]
-    
+    let dayHours: [WeatherDayHoursModel]
 }

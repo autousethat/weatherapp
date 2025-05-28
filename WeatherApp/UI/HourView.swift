@@ -28,7 +28,7 @@ class HourView: UIView {
         icon.widthAnchor.constraint(equalToConstant: 48).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 48).isActive = true
         icon.pin(left: 0, right: 0)
-        icon.topAnchor.constraint(equalTo: time.bottomAnchor, constant: -7).isActive = true
+        icon.topAnchor.constraint(equalTo: time.bottomAnchor, constant: -6).isActive = true
         
         temp.textColor = .white
         temp.font = UIFont.systemFont(ofSize: 18)
