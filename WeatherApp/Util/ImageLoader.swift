@@ -21,7 +21,9 @@ class ImageLoader {
             }
             else {
                 // TODO: load retry
-                callback(nil)
+                DispatchQueue.main.async {
+                    callback(nil)
+                }
             }
         }
     }

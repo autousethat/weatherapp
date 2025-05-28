@@ -22,7 +22,13 @@ class HourlyWeatherView: UIScrollView {
         var last: UIView?
         for weather in hourly {
             let hour = HourView()
-            hour.time.text = formatter.string(from: Date(timeIntervalSince1970: weather.time))
+            let date = Date(timeIntervalSince1970: weather.time)
+            let delta = -date.timeIntervalSinceNow
+            if delta >= 0 && delta < 3600 {
+                hour.setCurrent(true)
+                scrollTo = hour
+            }
+            hour.time.text = formatter.string(from: date)
             ImageLoader.from(weather.icon) { [weak icon = hour.icon] image in
                 icon?.image = image
             }
@@ -39,7 +45,17 @@ class HourlyWeatherView: UIScrollView {
             last = hour
         }
         last?.pin(right: 0)
-        print("subviews: ", subviews.count)
+    }
+    
+    var scrollTo: UIView?
+    // some scroll magic here
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let frame = scrollTo?.frame {
+            scrollTo = nil
+            let x = frame.origin.x + frame.size.width / 2 - self.frame.size.width / 2
+            self.setContentOffset(CGPoint(x: x, y: 0), animated: false)
+        }
     }
     
     required init?(coder: NSCoder) {

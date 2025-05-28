@@ -13,8 +13,14 @@ class HourView: UIView {
     let icon = UIImageView()
     let temp = UILabel()
     
+    func setCurrent(_ highlight: Bool) {
+        backgroundColor = highlight ? UIColor(white: 1, alpha: 0.2) : .clear
+    }
+    
     init() {
         super.init(frame: CGRect.zero)
+        layer.cornerRadius = 3
+        layer.masksToBounds = true
         icon.insert(in: self)
         time.insert(in: self)
         temp.insert(in: self)

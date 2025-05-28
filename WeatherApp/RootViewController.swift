@@ -37,26 +37,29 @@ class RootViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            // TODO: background fetch
-            if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude, days: 3) {
-                print(weather)
-                ImageLoader.from(weather.day.icon) { [weak view = self.currentView] image in
-                    view?.icon.image = image
+            DispatchQueue.global().async {
+                if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude, days: 3) {
+                    // this is thread safe
+                    ImageLoader.from(weather.day.icon) { [weak view = self.currentView] image in
+                        view?.icon.image = image
+                    }
+                    DispatchQueue.main.async {
+                        self.currentView.degree.text = String(format: "%.1f℃", weather.day.temp)
+                        self.currentView.place.text = weather.day.place
+                        let formatter = DateFormatter()
+                        formatter.dateFormat = "cccc d MMMM yyyy"
+                        self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
+                        if let hours = weather.dayHours.first?.hours {
+                            self.hourlyView.configure(hours)
+                        }
+                    }
+                    
                 }
-                self.currentView.degree.text = String(format: "%.1f℃", weather.day.temp)
-                self.currentView.place.text = weather.day.place
-                let formatter = DateFormatter()
-                formatter.dateFormat = "cccc d MMMM yyyy"
-                self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
-                if let hours = weather.dayHours.first?.hours {
-                    self.hourlyView.configure(hours)
+                else {
+                    // bg thread here
+                    print("fetch error")
                 }
             }
-            else {
-                print("fetch error")
-            }
-                
-            
             self.locator.stop()
         }
         locator.start()
