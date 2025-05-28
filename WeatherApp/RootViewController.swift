@@ -39,15 +39,14 @@ class RootViewController: UIViewController {
                 return
             }
             // TODO: background fetch
-            if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude) {
+            if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude, days: 3) {
                 print(weather)
-                ImageLoader.from(weather.icon) { [weak view = self.currentView] image in
+                ImageLoader.from(weather.day.icon) { [weak view = self.currentView] image in
                     view?.icon.image = image
                 }
-                self.currentView.degree.text = String(format: "%.1f℃", weather.temp)
-                self.currentView.place.text = weather.place
-                let hour = WeatherHourModel(time: Date().timeIntervalSince1970, icon: weather.icon, temp: 20)
-                self.hourlyView.configure([hour, hour, hour, hour, hour, hour, hour, hour])
+                self.currentView.degree.text = String(format: "%.1f℃", weather.day.temp)
+                self.currentView.place.text = weather.day.place
+                self.hourlyView.configure(weather.dayHours)
             }
             else {
                 print("fetch error")
