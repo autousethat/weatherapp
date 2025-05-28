@@ -12,16 +12,18 @@ class CurrentWeatherView: UIView {
     let icon = UIImageView()
     let degree = UILabel()
     let place = UILabel()
+    let date = UILabel()
     
     init() {
         super.init(frame: CGRect.zero)
         icon.insert(in: self)
-        icon.center(x: 0, yRatio: 0.33)
+        icon.pin(top: 0)
+        icon.center(x: 0)
         icon.contentMode = .scaleAspectFit
         icon.widthAnchor.constraint(equalToConstant: 96).isActive = true
         icon.heightAnchor.constraint(equalToConstant: 96).isActive = true
         degree.insert(in: self)
-        degree.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: -24).isActive = true
+        degree.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: -20).isActive = true
         degree.center(x: 0)
         degree.font = UIFont.systemFont(ofSize: 24)
         degree.textColor = .white
@@ -30,6 +32,13 @@ class CurrentWeatherView: UIView {
         place.center(x: 0)
         place.font = UIFont.systemFont(ofSize: 12)
         place.textColor = .lightGray
+        
+        date.insert(in: self)
+        date.topAnchor.constraint(equalTo: place.bottomAnchor, constant: 24).isActive = true
+        date.center(x: 0)
+        date.pin(bottom: 0)
+        date.font = UIFont.systemFont(ofSize: 12)
+        date.textColor = .white
     }
     
     required init?(coder: NSCoder) {

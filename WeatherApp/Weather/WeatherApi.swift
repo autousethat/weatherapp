@@ -37,8 +37,9 @@ class WeatherApi {
 
     func getCurrentWeather(lat: Double, lon: Double, days: Int) -> WeatherModel? {
         if
-            let json = requestJSON(.current(lat: lat, lon: lon)) as? [String: Any],
+            let json = requestJSON(.forecast(lat: lat, lon: lon, days: days)) as? [String: Any],
             let loc = json["location"] as? [String: Any],
+            let time = loc["localtime_epoch"] as? Double,
             let country = loc["country"] as? String,
             let region = loc["region"] as? String,
             let name = loc["name"] as? String,
@@ -49,7 +50,7 @@ class WeatherApi {
             let cond = curr["condition"] as? [String: Any],
             let icon = cond["icon"] as? String,
             let kind = cond["text"] as? String {
-            return WeatherModel(day: WeatherDayModel(temp: temp, feels: feels, wind: wind, icon: "http:" + icon, kind: kind, place: country + " / " + region + " / " + name), dayHours: Array(repeating: WeatherHourModel(time: 0, icon: "http:" + icon, temp: temp), count: 24))
+            return WeatherModel(day: WeatherDayModel(temp: temp, feels: feels, wind: wind, icon: "http:" + icon, kind: kind, place: country + " / " + region + " / " + name, time: time), dayHours: Array(repeating: WeatherHourModel(time: time, icon: "http:" + icon, temp: temp), count: 24))
         }
         return nil
     }

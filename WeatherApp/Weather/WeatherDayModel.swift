@@ -15,4 +15,5 @@ struct WeatherDayModel {
     let icon: String    // http://x.com/sunny.png
     let kind: String    // sunny
     let place: String   // Russia/Moskva
+    let time: Double    //
 }

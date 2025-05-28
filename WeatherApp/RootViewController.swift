@@ -19,16 +19,15 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         
         currentView.insert(in: view)
-        currentView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.618).isActive = true
         currentView.pin(left: 0, right: 0)
-        currentView.center(x: 0, yRatio: 1 - 0.618)
+        currentView.center(x: 0, yRatio: 0.2)
         currentView.place.text = "waiting location"
         
         hourlyView.showsVerticalScrollIndicator = false
         hourlyView.showsHorizontalScrollIndicator = false
         hourlyView.insert(in: view)
         hourlyView.pin(left: 0, right: 0)
-        hourlyView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 0).isActive = true
+        hourlyView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 4).isActive = true
         
         setLocator()
     }
@@ -46,6 +45,9 @@ class RootViewController: UIViewController {
                 }
                 self.currentView.degree.text = String(format: "%.1f℃", weather.day.temp)
                 self.currentView.place.text = weather.day.place
+                let formatter = DateFormatter()
+                formatter.dateFormat = "cccc d MMMM yyyy"
+                self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
                 self.hourlyView.configure(weather.dayHours)
             }
             else {

@@ -17,10 +17,12 @@ class HourlyWeatherView: UIScrollView {
         for view in subviews {
             view.removeFromSuperview()
         }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
         var last: UIView?
         for weather in hourly {
             let hour = HourView()
-            hour.time.text = "00:00"
+            hour.time.text = formatter.string(from: Date(timeIntervalSince1970: weather.time))
             ImageLoader.from(weather.icon) { [weak icon = hour.icon] image in
                 icon?.image = image
             }
