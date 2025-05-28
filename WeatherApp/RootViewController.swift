@@ -13,15 +13,22 @@ class RootViewController: UIViewController {
     let api = WeatherApi()
     
     let currentView = CurrentWeatherView()
+    let hourlyView = HourlyWeatherView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         currentView.insert(in: view)
-        currentView.widthAnchor.constraint(equalToConstant: view.frame.width * 0.618).isActive = true
-        currentView.aspect(1)
+        currentView.heightAnchor.constraint(equalToConstant: view.frame.width * 0.618).isActive = true
+        currentView.pin(left: 0, right: 0)
         currentView.center(x: 0, yRatio: 1 - 0.618)
         currentView.place.text = "waiting location"
+        
+        hourlyView.showsVerticalScrollIndicator = false
+        hourlyView.showsHorizontalScrollIndicator = false
+        hourlyView.insert(in: view)
+        hourlyView.pin(left: 0, right: 0)
+        hourlyView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 0).isActive = true
         
         setLocator()
     }
@@ -32,15 +39,15 @@ class RootViewController: UIViewController {
                 return
             }
             // TODO: background fetch
-            if
-                let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude),
-                let url = URL(string: weather.icon),
-                let data = try? Data(contentsOf: url) {
+            if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude) {
                 print(weather)
-                let image = UIImage(data: data)
-                self.currentView.icon.image = image
+                ImageLoader.from(weather.icon) { [weak view = self.currentView] image in
+                    view?.icon.image = image
+                }
                 self.currentView.degree.text = String(format: "%.1f℃", weather.temp)
                 self.currentView.place.text = weather.place
+                let hour = WeatherHourModel(time: Date().timeIntervalSince1970, icon: weather.icon, temp: 20)
+                self.hourlyView.configure([hour, hour, hour, hour, hour, hour, hour, hour])
             }
             else {
                 print("fetch error")

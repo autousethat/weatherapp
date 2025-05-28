@@ -17,9 +17,11 @@ class CurrentWeatherView: UIView {
         super.init(frame: CGRect.zero)
         icon.insert(in: self)
         icon.center(x: 0, yRatio: 0.33)
-        icon.contentMode = .center
+        icon.contentMode = .scaleAspectFit
+        icon.widthAnchor.constraint(equalToConstant: 96).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: 96).isActive = true
         degree.insert(in: self)
-        degree.topAnchor.constraint(equalTo: icon.bottomAnchor).isActive = true
+        degree.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: -24).isActive = true
         degree.center(x: 0)
         degree.font = UIFont.systemFont(ofSize: 24)
         degree.textColor = .white
