@@ -31,15 +31,15 @@ class HourView: UIView {
         time.font = UIFont.systemFont(ofSize: 11)
         
         icon.contentMode = .scaleAspectFit
-        icon.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        icon.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        icon.pin(left: 0, right: 0)
-        icon.topAnchor.constraint(equalTo: time.bottomAnchor, constant: -6).isActive = true
+        icon.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        icon.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        icon.pin(left: 8, right: 8)
+        icon.topAnchor.constraint(equalTo: time.bottomAnchor, constant: 0).isActive = true
         
         temp.textColor = .white
         temp.font = UIFont.systemFont(ofSize: 18)
         temp.center(x: 0)
-        temp.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: -11).isActive = true
+        temp.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 0).isActive = true
         temp.pin(bottom: 0)
     }
     

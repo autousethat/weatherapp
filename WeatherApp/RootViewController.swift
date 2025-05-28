@@ -13,7 +13,6 @@ class RootViewController: UIViewController {
     let api = WeatherApi()
     
     let currentView = CurrentView()
-    let hoursView = HoursView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +21,6 @@ class RootViewController: UIViewController {
         currentView.pin(left: 0, right: 0)
         currentView.center(x: 0, yRatio: 0.2)
         currentView.place.text = "waiting location"
-        
-        hoursView.showsVerticalScrollIndicator = false
-        hoursView.showsHorizontalScrollIndicator = false
-        hoursView.insert(in: view)
-        hoursView.pin(left: 0, right: 0)
-        hoursView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 4).isActive = true
         
         setLocator()
     }
@@ -48,12 +41,17 @@ class RootViewController: UIViewController {
                         self.currentView.place.text = weather.day.place
                         let formatter = DateFormatter()
                         formatter.dateFormat = "cccc d MMMM yyyy"
-                        self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
-                        if let hours = weather.dayHours.first?.hours {
-                            self.hoursView.configure(hours)
+                        var anchor = self.currentView.bottomAnchor
+                        for hours in weather.dayHours {
+                            let dayHours = DayHoursView()
+                            dayHours.insert(in: self.view)
+                            dayHours.pin(left: 0, right: 0)
+                            dayHours.topAnchor.constraint(equalTo: anchor, constant: 10).isActive = true
+                            dayHours.date.text = formatter.string(from: Date(timeIntervalSince1970: hours.date))
+                            dayHours.hours.configure(hours.hours)
+                            anchor = dayHours.bottomAnchor
                         }
                     }
-                    
                 }
                 else {
                     // bg thread here
@@ -63,14 +61,6 @@ class RootViewController: UIViewController {
             self.locator.stop()
         }
         locator.start()
-        
-        //api.request(.forecast(lat: 55, lon: 37, days: 3))
-        // TODO: we just need forecast cause it have current in reply
-        //    http://api.weatherapi.com/v1/forecast.json?key=fa8b3df74d4042b9aa7135114252304&q=55.0,37.0&days=3
-        //    Optional({
-        //        current =     {
-        //            cloud = 25;
-        //            condition =
     }
     
 }

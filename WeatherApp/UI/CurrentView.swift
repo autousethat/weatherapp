@@ -12,7 +12,6 @@ class CurrentView: UIView {
     let icon = UIImageView()
     let degree = UILabel()
     let place = UILabel()
-    let date = UILabel()
     
     init() {
         super.init(frame: CGRect.zero)
@@ -32,13 +31,7 @@ class CurrentView: UIView {
         place.center(x: 0)
         place.font = UIFont.systemFont(ofSize: 12)
         place.textColor = .lightGray
-        
-        date.insert(in: self)
-        date.topAnchor.constraint(equalTo: place.bottomAnchor, constant: 24).isActive = true
-        date.center(x: 0)
-        date.pin(bottom: 0)
-        date.font = UIFont.systemFont(ofSize: 12)
-        date.textColor = .white
+        place.pin(bottom: 6)
     }
     
     required init?(coder: NSCoder) {
