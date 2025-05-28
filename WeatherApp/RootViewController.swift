@@ -12,8 +12,8 @@ class RootViewController: UIViewController {
     let locator = GeoLocator()
     let api = WeatherApi()
     
-    let currentView = CurrentWeatherView()
-    let hourlyView = HourlyWeatherView()
+    let currentView = CurrentView()
+    let hoursView = HoursView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,11 @@ class RootViewController: UIViewController {
         currentView.center(x: 0, yRatio: 0.2)
         currentView.place.text = "waiting location"
         
-        hourlyView.showsVerticalScrollIndicator = false
-        hourlyView.showsHorizontalScrollIndicator = false
-        hourlyView.insert(in: view)
-        hourlyView.pin(left: 0, right: 0)
-        hourlyView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 4).isActive = true
+        hoursView.showsVerticalScrollIndicator = false
+        hoursView.showsHorizontalScrollIndicator = false
+        hoursView.insert(in: view)
+        hoursView.pin(left: 0, right: 0)
+        hoursView.topAnchor.constraint(equalTo: currentView.bottomAnchor, constant: 4).isActive = true
         
         setLocator()
     }
@@ -50,7 +50,7 @@ class RootViewController: UIViewController {
                         formatter.dateFormat = "cccc d MMMM yyyy"
                         self.currentView.date.text = formatter.string(from: Date(timeIntervalSince1970: weather.day.time))
                         if let hours = weather.dayHours.first?.hours {
-                            self.hourlyView.configure(hours)
+                            self.hoursView.configure(hours)
                         }
                     }
                     

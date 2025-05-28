@@ -1,5 +1,5 @@
 //
-//  HourlyWeatherView.swift
+//  HoursView.swift
 //  WeatherApp
 //
 //  Created by Oleg Antonov on 5/27/25.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HourlyWeatherView: UIScrollView {
+class HoursView: UIScrollView {
     init() {
         super.init(frame: CGRect.zero)
     }

@@ -1,5 +1,5 @@
 //
-//  CurrentWeatherView.swift
+//  CurrentView.swift
 //  WeatherApp
 //
 //  Created by Oleg Antonov on 5/24/25.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrentWeatherView: UIView {
+class CurrentView: UIView {
     
     let icon = UIImageView()
     let degree = UILabel()
