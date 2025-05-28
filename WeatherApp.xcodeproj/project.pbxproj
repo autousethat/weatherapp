@@ -51,13 +51,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0817357C2DE6FC1E00603ED0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				087D83E82DE190770093CDFD /* GeoLocator.swift */,
+				0889ECA42DE1A380008FC399 /* WeatherApi.swift */,
+				0817357A2DE6CE1600603ED0 /* ImageLoader.swift */,
+				0889ECA82DE23C57008FC399 /* UIViewExtension.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		0817357D2DE6FCCD00603ED0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0889ECA62DE22839008FC399 /* WeatherDayModel.swift */,
+				081735782DE6147A00603ED0 /* WeatherHourModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0889ECAA2DE23D89008FC399 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				0889ECAB2DE23DC3008FC399 /* CurrentWeatherView.swift */,
 				08B487E32DE604BE00D93F8A /* HourlyWeatherView.swift */,
 				081735762DE611CB00603ED0 /* HourView.swift */,
-				0889ECA82DE23C57008FC399 /* UIViewExtension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -82,13 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				088C99DA2DE170A500272BAF /* AppDelegate.swift */,
-				087D83E82DE190770093CDFD /* GeoLocator.swift */,
-				0889ECA42DE1A380008FC399 /* WeatherApi.swift */,
-				0817357A2DE6CE1600603ED0 /* ImageLoader.swift */,
-				0889ECA62DE22839008FC399 /* WeatherDayModel.swift */,
-				081735782DE6147A00603ED0 /* WeatherHourModel.swift */,
 				088C99DE2DE170A500272BAF /* RootViewController.swift */,
+				0817357D2DE6FCCD00603ED0 /* Model */,
 				0889ECAA2DE23D89008FC399 /* UI */,
+				0817357C2DE6FC1E00603ED0 /* Util */,
 				088C99E32DE170AA00272BAF /* Assets.xcassets */,
 				088C99E52DE170AA00272BAF /* LaunchScreen.storyboard */,
 				088C99E82DE170AA00272BAF /* Info.plist */,
