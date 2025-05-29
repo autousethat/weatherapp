@@ -11,6 +11,7 @@ import UIKit
 class GeoLocator: NSObject, CLLocationManagerDelegate {
     
     private var isUpdating = false
+    private var useMoscow = false   // special
     
     var onUpdate: (CLLocation) -> Void = { _ in }
     
@@ -22,6 +23,10 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     }
     
     func start() {
+        guard !useMoscow else {
+            onUpdate(CLLocation(latitude: 55.75361, longitude: 37.61972))
+            return
+        }
         manager.requestWhenInUseAuthorization()
         isUpdating = true
         manager.startUpdatingLocation()
@@ -47,12 +52,20 @@ class GeoLocator: NSObject, CLLocationManagerDelegate {
     @objc func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         if (error._code == CLError.denied.rawValue) {
             let alert = UIAlertController(title: "Permission denied", message: "Allow location services please", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Settings", style: .default) { _ in
+            let goAction = UIAlertAction(title: "Settings", style: .default) { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.openURL(url)
                 }
             }
-            alert.addAction(action)
+            let useAction = UIAlertAction(title: "Use Moscow", style: .destructive) { [weak self] _ in
+                self?.stop()
+                self?.useMoscow = true
+                DispatchQueue.main.async {
+                    self?.start()
+                }
+            }
+            alert.addAction(goAction)
+            alert.addAction(useAction)
             UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
