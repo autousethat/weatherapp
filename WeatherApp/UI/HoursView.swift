@@ -13,7 +13,7 @@ class HoursView: UIScrollView {
         super.init(frame: CGRect.zero)
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
-        backgroundColor = UIColor(white: 1, alpha: 0.09)
+        backgroundColor = UIColor(white: 1, alpha: 0.07)
     }
     
     func configure(_ hourly: [WeatherHourModel]) {

@@ -17,11 +17,11 @@ class DayHoursView: UIView {
         date.insert(in: self)
         date.center(x: 0)
         date.pin(top: 0)
-        date.font = UIFont.systemFont(ofSize: 12)
+        date.font = UIFont.systemFont(ofSize: 14)
         date.textColor = .white
         hours.insert(in: self)
         hours.pin(left: 0, right: 0)
-        hours.topAnchor.constraint(equalTo: date.bottomAnchor, constant: 1).isActive = true
+        hours.topAnchor.constraint(equalTo: date.bottomAnchor).isActive = true
         hours.pin(bottom: 0)
     }
     

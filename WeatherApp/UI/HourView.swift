@@ -28,7 +28,7 @@ class HourView: UIView {
         time.pin(top: 0)
         time.center(x: 0)
         time.textColor = .lightGray
-        time.font = UIFont.systemFont(ofSize: 11)
+        time.font = UIFont.systemFont(ofSize: 10)
         
         icon.contentMode = .scaleAspectFit
         icon.widthAnchor.constraint(equalToConstant: 32).isActive = true
