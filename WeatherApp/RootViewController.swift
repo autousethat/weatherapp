@@ -13,6 +13,10 @@ class RootViewController: UIViewController {
     let api = WeatherApi()
     
     let currentView = CurrentView()
+    
+    private func setState(_ text: String?) {
+        currentView.place.text = text
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +24,8 @@ class RootViewController: UIViewController {
         currentView.insert(in: view)
         currentView.pin(left: 0, right: 0)
         currentView.center(x: 0, yRatio: 0.2)
-        currentView.place.text = "waiting location"
         
+        setState("location detection")
         setLocator()
     }
     
@@ -30,6 +34,8 @@ class RootViewController: UIViewController {
             guard let self = self else {
                 return
             }
+            self.setState("requesting the weather")
+            
             DispatchQueue.global().async {
                 if let weather = self.api.getCurrentWeather(lat: location.coordinate.latitude, lon: location.coordinate.longitude, days: 3) {
                     // this is thread safe
