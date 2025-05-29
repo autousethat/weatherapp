@@ -14,6 +14,7 @@ class RootViewController: UIViewController {
     let api = WeatherApi()
     
     let currentView = CurrentView()
+    private var dayHoursViews = [DayHoursView]()
     
     private var indicator: UIActivityIndicatorView?
     
@@ -66,8 +67,12 @@ class RootViewController: UIViewController {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "cccc d MMMM yyyy"
                     var anchor = self.currentView.bottomAnchor
+                    for view in self.dayHoursViews {
+                        view.removeFromSuperview()
+                    }
                     for hours in weather.dayHours {
                         let dayHours = DayHoursView()
+                        self.dayHoursViews.append(dayHours)
                         dayHours.insert(in: self.view)
                         dayHours.pin(left: 0, right: 0)
                         dayHours.topAnchor.constraint(equalTo: anchor, constant: 10).isActive = true
